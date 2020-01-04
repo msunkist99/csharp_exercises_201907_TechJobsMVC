@@ -2,6 +2,10 @@
 
 <form action="/Search/Results">
     <h2>Search by:</h2>
+    @if (ViewBag.searchType == null)
+    {
+        ViewBag.searchType = "all";
+    }
 
     <p>
         @foreach (KeyValuePair<string, string> column in ViewBag.columns)
@@ -10,8 +14,10 @@
                 <input type="radio"
                        name="searchType"
                        id="@column.Key"
-                       value="@column.Key" 
-                       checked="@column.Key == 'all''"/>
+                       value="@column.Key"
+                       checked="@(column.Key == ViewBag.searchType )"
+                />
+                        
                 <label for="@column.Key">@column.Value</label>
             </span>
         }
@@ -19,7 +25,7 @@
 
     <p>
         <label for="searchTerm">Keyword:</label>
-        <input type="text" name="searchTerm" id="searchTerm" />
+        <input type="text" name="searchTerm" id="searchTerm" value=@ViewBag.searchTerm />
     </p>
 
     <input type="submit" value="Search" />
@@ -32,5 +38,7 @@
 
     <h3>@ViewBag.jobs.Count Result(s)</h3>
 
-    // TODO #2 - Loop over jobs dictionary and display all job fields 
+    // TODO #2 - DONE - Loop over jobs dictionary and display all job fields
+
+        Html.RenderPartial("_JobsResults");
 }

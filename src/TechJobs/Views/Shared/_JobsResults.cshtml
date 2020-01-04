@@ -1,0 +1,31 @@
+﻿<table>
+    @for (int i = 0; i < ViewBag.jobs.Count; i++)
+    {
+        @if (i == 0)
+        {
+            <thead>
+                <tr>
+                    @foreach (KeyValuePair<string, string> job in ViewBag.jobs[i])
+                    {
+                        if (@job.Key.ToUpper() == "NAME")
+                        {
+                            <th>@job.Key.ToUpper()</th>
+ }
+                        else
+                        {
+                            <th><a asp-controller="List" asp-action="Values" asp-route-column=@job.Key>   @(job.Key.ToUpper())</a></th>
+                        }
+                    }
+                </tr>
+            </thead>
+        }
+
+        <tr class="@( i % 2 == 0 ? "even" : "odd" ) ">
+            @foreach (KeyValuePair<string, string> job in ViewBag.jobs[i])
+            {
+                <td>@job.Value</td>
+            }
+        </tr>
+
+    }
+</table>
