@@ -6,7 +6,7 @@ namespace TechJobs.Controllers
 {
     public class SearchController : Controller
     {
-        internal static List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+        internal static IEnumerable<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
         internal static string holdSearchType;
         internal static string holdSearchTerm;
 
@@ -31,7 +31,7 @@ namespace TechJobs.Controllers
                 jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
             }
 
-            List<string> values = new List<string>();
+            IEnumerable<string> values = new List<string>();
             holdSearchType = searchType;
             holdSearchTerm = searchTerm;
 
