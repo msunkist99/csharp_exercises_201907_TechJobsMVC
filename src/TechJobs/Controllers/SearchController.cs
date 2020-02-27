@@ -34,6 +34,7 @@ namespace TechJobs.Controllers
             }
 
             IEnumerable<string> values = new List<string>();
+            // TODO Bonus - COMPLETE - When searching, if we select a given field to search within and submit, our choice is forgotten. Modify the view template to keep the previous search field selected when displaying results.
             holdSearchType = searchType;
             holdSearchTerm = searchTerm;
 
